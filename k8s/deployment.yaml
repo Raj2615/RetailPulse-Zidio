@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: retailpulse-app
+  labels:
+    app: retailpulse
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: retailpulse
+  template:
+    metadata:
+      labels:
+        app: retailpulse
+    spec:
+      containers:
+      - name: retailpulse-container
+        image: your-dockerhub-username/retailpulse:latest
+        ports:
+        - containerPort: 8501
+        resources:
+          limits:
+            memory: "1024Mi"
+            cpu: "500m"
+          requests:
+            memory: "512Mi"
+            cpu: "250m"
